@@ -1,0 +1,119 @@
+.page{
+    display:flex;
+    flex-direction:column;
+    position: relative;
+
+    border-radius: 40px;
+}
+
+header {
+    display:flex;
+    background-color: #ffffff;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    height: 150px;
+    width: 50px;
+    background-size: cover;
+    margin-right: 10px;
+}
+
+.stockbizz{
+    display:flex;
+    position: absolute;
+    width: 335.33px;
+    height: 78.24px;
+    margin-left:auto;
+    font-size:20px;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 72px;
+    line-height: 110%;
+    background: linear-gradient(88.21deg, #C935FF 2.74%, #9D35FF 30.6%, #6A35FF 57.32%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.content{
+    width: 896px;
+    height: 158px;
+    display:flex;
+    flex-direction:row;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 72px;
+    line-height: 110%;
+
+
+    color: #0C0B1A;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.search-input {
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+}
+
+.search-button {
+    padding: 6px 10px;
+    background: linear-gradient(93.54deg, #C935FF -38.4%, #9D35FF 20.35%, #6A35FF 76.7%);
+    border-radius: 25px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.mainimage{
+    display:flex;
+    flex-direction:column;
+    width:100px;
+    height:100px;
+    align-items: right;
+}
+
+footer {
+    display:flex;
+    flex-direction:column;
+    background-color: #654BAF;
+    color: white;
+    padding: 20px;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .footer-column {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .footer-column h4 {
+    margin-bottom: 10px;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+  }
