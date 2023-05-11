@@ -1,0 +1,74 @@
+.container{
+  
+    width: 1200px;
+    height: 650px;
+    position:relative;
+    padding:0;
+    margin:0;
+    
+    
+
+
+}
+.visualization{
+    justify-content: bottom;
+    align-items: bottom;
+    position:absolute;
+    
+    background: rgba(106,53,255,0.15);
+    margin-top: -10;
+    border-radius: 0px 0px 20px 20px;
+   
+   
+}
+.heading{
+    display:flex;
+    border-radius: 20px 20px 0px 0px;
+    bottom:0;
+    background: rgba(106,53,255,0.15);
+    line-height: 1;
+    
+  
+}
+.css-sghohy-MuiButtonBase-root-MuiButton-root{
+    /* background-image: linear-gradient(130deg,#c935ff,#9d35ff,#6a35ff) !important; */
+    background:  linear-gradient(119.74deg, #C935FF -17.68%, #9D35FF 23.46%, #6A35FF 68.18% )!important;
+
+
+}
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+    color:#8CA1A9 !important;
+}
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+    /* background:  rgba(106,53,255,0.15)!important; */
+    border: none !important;
+}
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+    /* background:  rgba(106,53,255,0.15)!important; */
+}
+.MuiOutlinedInput-notchedOutline {
+    border-width: 1px !important;
+    border-color:  rgba(106,53,255,0.15)!important;
+  }
+  
+  .Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color:  rgba(106,53,255,0.15) !important;
+  }
+  .stockheading{
+    margin-bottom: 0px;
+    align-items: start;
+    justify-content: left;
+    margin-top: 35px;
+    margin-left: 8%;
+    margin-right:auto;
+    min-width: 100px;
+    max-width: 100px;
+  }
+  .timestamp{
+    width: 350px;
+    align-items: end;
+    justify-content: flex-end;
+    margin-top: 30px;
+    margin-left: 26%;
+    margin-bottom: 15px;
+  }
