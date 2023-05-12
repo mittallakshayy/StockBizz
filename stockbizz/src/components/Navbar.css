@@ -1,0 +1,44 @@
+.css-hip9hq-MuiPaper-root-MuiAppBar-root{
+    color:rgb(182, 166, 166)!important;
+    background-color: white !important;
+    box-shadow:none!important;
+}
+.css-yz9k0d-MuiInputBase-input{
+    background-color: rgba(106,53,255,0.15)!important;
+    border-radius: 10px!important;
+    
+   
+}
+#navbutton{
+    border-radius: 25px!important;
+    margin-left: 1em!important;
+}
+.inputgroup{
+    margin-left: 46%!important;
+    margin-top: 17px!important;
+    display:flex!important;
+    
+    
+}
+.logo{
+    /* width: 25%; */
+    
+    margin-left:5%;
+}
+
+.css-1h51icj-MuiAutocomplete-root .MuiAutocomplete-inputRoot .MuiAutocomplete-input{
+    width: 200!important;
+    min-width: 150px!important;
+    background-color: rgba(106,53,255,0.15)!important;
+    border:0;
+    box-shadow: none !important;
+    border-radius: 10px!important;
+}
+.css-1h51icj-MuiAutocomplete-root .MuiAutocomplete-inputRoot{
+    background-color: rgba(106,53,255,0.15)!important;
+    padding: .2 !important;
+    border-radius: 10px!important;;
+}
+.css-md26zr-MuiInputBase-root-MuiOutlinedInput-root{
+    font-size: 1rem !important;
+}

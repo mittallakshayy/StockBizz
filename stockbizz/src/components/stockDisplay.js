@@ -21,10 +21,9 @@ import CandleStick from './CandleStick';
 
 
  
-function StockDisplay(){
+function StockDisplay(props){
     
     const [series,setSeries] = useState([]);
-    const [seriesCandle,setSeriesCandle] = useState([]);
     const [name,setName] = useState('');
     const [day,setDay] = useState('contained');
     const [week,setWeek] = useState('text');
@@ -32,10 +31,7 @@ function StockDisplay(){
     const [visualization,setVisualization]= useState('Timeseries');
     const [activeUrl, setActiveUrl]=useState('TIME_SERIES_INTRADAY');
 
-    // const [currentChartOptions,setCurrentChartOptions] = useState({
-    //     "frequency":"daily",
-    // })
-    
+
     
     const [options,setOptions]= useState({
    
@@ -268,8 +264,8 @@ function StockDisplay(){
   }
     async function fetchStockData() {
       try {
-        const response = await axios.get(`https://www.alphavantage.co/query?function=${activeUrl}&symbol=GOOGL&interval=5min&apikey=${process.env.REACT_APP_KEY}`);
-        const responseCompanyName = await axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=GOOGL&apikey=${process.env.REACT_APP_KEY}`);
+        const response = await axios.get(`https://www.alphavantage.co/query?function=${activeUrl}&symbol=${props.ticker}&interval=5min&apikey=${process.env.REACT_APP_KEY}`);
+        const responseCompanyName = await axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${props.ticker}&apikey=${process.env.REACT_APP_KEY}`);
         const responseCompanyStockData= response.data;
        
         
@@ -288,7 +284,9 @@ function StockDisplay(){
         // setSeriesBar(newSeries);
        
       } catch (error) {
-        console.log('Error fetching the stock data:', error);
+        alert("Intraday stock data not present try Weekly or Monthly Data");
+        handleAllClick();
+        ;
       }
     }
     
@@ -296,6 +294,7 @@ function StockDisplay(){
     
 
     useEffect(()=>{
+      console.log(props.ticker);
         fetchStockData();
     },[visualization,activeUrl,options])
 

@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.css-hip9hq-MuiPaper-root-MuiAppBar-root{
+  color:rgb(182, 166, 166);
+  background-color: white;
+  box-shadow:none;
+}
+.css-yz9k0d-MuiInputBase-input{
+  background-color: rgba(106,53,255,0.15);
+  border-radius: 10px;
+  width: 120%;
+ 
+}
+#navbutton{
+  border-radius: 25px;
+  margin-left: 1rem;
+}
+.inputgroup{
+  margin-left: 60%;
+  margin-top: 17px;
+  display:flex
+  
+}
+.logo{
+  /* width: 25%; */
+}
