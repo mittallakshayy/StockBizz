@@ -1,24 +1,25 @@
 .container{
-  
-    width: 1200px;
-    height: 650px;
-    position:relative;
-    padding:0;
-    margin:0;
     
-    
-
+    margin-left: 17%;
+    margin-right: 17%;
+    margin-top:2.5%;
+    width:92%;
 
 }
+
+.innerContainer{
+
+    width: 70%;
+    
+ 
+}
+
 .visualization{
     justify-content: bottom;
     align-items: bottom;
-    position:absolute;
-    
     background: rgba(106,53,255,0.15);
     margin-top: -10;
     border-radius: 0px 0px 20px 20px;
-   
    
 }
 .heading{
@@ -58,17 +59,17 @@
     margin-bottom: 0px;
     align-items: start;
     justify-content: left;
-    margin-top: 35px;
+    margin-top: 25px;
     margin-left: 8%;
     margin-right:auto;
-    min-width: 100px;
-    max-width: 100px;
   }
   .timestamp{
     width: 350px;
     align-items: end;
     justify-content: flex-end;
     margin-top: 30px;
-    margin-left: 26%;
+    margin-right: 30px;
+    margin-left: 56%;
     margin-bottom: 15px;
   }
+  
