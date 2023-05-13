@@ -12,11 +12,13 @@
 #navbutton{
     border-radius: 25px!important;
     margin-left: 1em!important;
+    height: 45px;
 }
 .inputgroup{
-    margin-left: 46%!important;
+    margin-left: 33%!important;
     margin-top: 17px!important;
     display:flex!important;
+    height: 55px;
     
     
 }
@@ -27,18 +29,31 @@
 }
 
 .css-1h51icj-MuiAutocomplete-root .MuiAutocomplete-inputRoot .MuiAutocomplete-input{
-    width: 200!important;
+    width: 250px!important;
     min-width: 150px!important;
-    background-color: rgba(106,53,255,0.15)!important;
+    /* background: rgba(106,53,255,0.15)!important; */
     border:0;
     box-shadow: none !important;
     border-radius: 10px!important;
+    padding: 2!important;
+    
 }
 .css-1h51icj-MuiAutocomplete-root .MuiAutocomplete-inputRoot{
     background-color: rgba(106,53,255,0.15)!important;
-    padding: .2 !important;
-    border-radius: 10px!important;;
+    padding: 1 !important;
+    border-radius: 10px!important;
+    margin-right: 25px !important;
+    height: 45px;
 }
 .css-md26zr-MuiInputBase-root-MuiOutlinedInput-root{
     font-size: 1rem !important;
+}
+.compare{
+color:#654BAF !important;
+margin-right: 25px !important;
+
+}
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root{
+    padding: 10px 8px!important;
+    font-size:1rem !important;
 }

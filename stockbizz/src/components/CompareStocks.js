@@ -6,34 +6,24 @@ import moment from 'moment';
 import Typography from '@mui/material/Typography';
 import './StockDisplay.css';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Stack from '@mui/material/Stack';
-import BarChart from './BarChart';
-import AreaChart from './AreaChart';
-import CandleStick from './CandleStick';
+import {useParams} from 'react-router-dom';
  
-function StockDisplay(props){
+function CompareStocks(props){
     
     const [series,setSeries] = useState([]);
-    const [name,setName] = useState('');
     const [day,setDay] = useState('contained');
     const [week,setWeek] = useState('text');
     const [all,setAll] = useState('text');
-    const [visualization,setVisualization]= useState('Timeseries');
     const [activeUrl, setActiveUrl]=useState('TIME_SERIES_INTRADAY');
-
+    const {ticker1,ticker2}= useParams();
 
     
     const [options,setOptions]= useState({
    
         chart: {
         type: 'line',
-        stacked: false,
         width:'70%'
-     
-       
       },
       dataLabels: {
         enabled: false
@@ -41,24 +31,14 @@ function StockDisplay(props){
       markers: {
         size: 0,
       },
-    
-      fill: {
-        type: 'gradient',
-        gradient: {
-          shadeIntensity: 1,
-          inverseColors: false,
-          opacityFrom: 0.5,
-          opacityTo: 0,
-          stops: [0, 90, 100]
-        },
-      },
       
-        colors:['#d782f5']
+        colors:['#9d35ff','#d782f5']
       ,
       legend: {
         fontWeight: "bold"
       },
-      yaxis: {
+    
+    yaxis: {
         lines: {
             show: false,
           },
@@ -72,31 +52,31 @@ function StockDisplay(props){
         },
       },
       fill:{
-        colors:['#d782f5']
+        colors:['#9d35ff','#d782f5']
       },
       xaxis: {
-        lines: {
-            show: false,
-          },
+        
         type: 'datetime',
         labels: {
             rotate: -10,
             rotateAlways: true,
             formatter: function(timestamp,val) {
-                
-          
-                
                 return moment.unix(timestamp).format("DD MMM hh:mm") 
                 
           }}
       },
       tooltip: {
-        shared: false,
+        
         y: {
-          formatter: function (val) {
-            return '$ '+(val).toFixed(2)
-          }
-        }
+            y1:{
+            formatter: function (val) {
+              return '$ '+(val).toFixed(2)
+            }},
+            y2:{
+                formatter: function (val) {
+                  return '$ '+(val).toFixed(2)
+                },
+        }},
       }
       });
 
@@ -162,7 +142,8 @@ function StockDisplay(props){
      setDay('contained');
      setWeek('text');
      
-     const objDay ={xaxis: {
+     const objDay ={xaxis: 
+        {
         lines: {
             show: false,
           },
@@ -178,33 +159,17 @@ function StockDisplay(props){
                 
           }}
       }}
+
+    
      await setOptions((prevOptions)=>{
         return {...prevOptions,...objDay}
      })
      console.log(options)
      setActiveUrl('TIME_SERIES_INTRADAY');
-     setVisualization('Timeseries');
+    
     
     } 
-    const handleChange = (event) => {
-        setVisualization(event.target.value);
-      };
-      
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    if(event.currentTarget!== null && event.currentTarget !==undefined){
-        setAnchorEl(event.currentTarget);
-    }
-    
-    //console.log(typeof(event.currentTarget))
-  };
-  const handleClose = (e) => {
-    if(e.target.innerText!== null && e.target.innerText !==undefined &&e.target.innerText !==""){setAnchorEl(null);
-        setVisualization(e.target.innerText);
-        ;}
-    
-  };
+
   const getDataArray = (responseCompanyStockData) =>{
     if(activeUrl==="TIME_SERIES_INTRADAY"){
     const dataArray = Object.keys(responseCompanyStockData['Time Series (5min)'])?.map((date) => {
@@ -256,83 +221,66 @@ function StockDisplay(props){
 
   }
     async function fetchStockData() {
-      try {
-        const response = await axios.get(`https://www.alphavantage.co/query?function=${activeUrl}&symbol=${props.ticker}&interval=5min&apikey=${process.env.REACT_APP_KEY}`);
-        const responseCompanyName = await axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${props.ticker}&apikey=${process.env.REACT_APP_KEY}`);
-        const responseCompanyStockData= response.data;
-       
-        
-        
-        setName(responseCompanyName.data['bestMatches'][0]['2. name']);
-        
-       if(visualization==="Timeseries"){
-        const stockData = new Object();
-        stockData.name=responseCompanyName.data['bestMatches'][0]['2. name'];
-        stockData.data = getDataArray(responseCompanyStockData);
-        const newSeries = [stockData];
-         setSeries(newSeries);
-       }
-    //    
-        //console.log(newSeries);
-        // setSeriesBar(newSeries);
-       
-      } catch (error) {
-        alert("Intraday stock data not present try Weekly or Monthly Data");
-        handleAllClick();
-        ;
-      }
+        try {
+            
+            const response1 = await axios.get(`https://www.alphavantage.co/query?function=${activeUrl}&symbol=${ticker1}&interval=5min&apikey=${process.env.REACT_APP_KEY}`);
+            const response2 = await axios.get(`https://www.alphavantage.co/query?function=${activeUrl}&symbol=${ticker2}&interval=5min&apikey=${process.env.REACT_APP_KEY}`);
+            console.log(response1);
+            console.log(response2);
+            const responseCompanyName1 = await axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${ticker1}&apikey=${process.env.REACT_APP_KEY}`);
+            const responseCompanyName2 = await axios.get(`https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${ticker2}&apikey=${process.env.REACT_APP_KEY}`);
+    
+            const responseCompanyStockData1= response1.data;
+            const responseCompanyStockData2= response2.data;
+    
+    
+            // setName('1. '+responseCompanyName1.data['bestMatches'][0]['2. name']+'\n'+' 2. '+responseCompanyName2.data['bestMatches'][0]['2. name']);
+    
+           
+            const stockData1 = new Object();
+            const stockData2 = new Object();
+            stockData1.name=responseCompanyName1.data['bestMatches'][0]['2. name'];
+            stockData1.data = getDataArray(responseCompanyStockData1);
+            stockData2.name=responseCompanyName2.data['bestMatches'][0]['2. name'];
+            stockData2.data = getDataArray(responseCompanyStockData2);
+            const newSeries = [stockData1,stockData2];
+             setSeries(newSeries);
+           
+        //
+          
+    
+          } catch (error) {
+            alert("Intraday stock data not present try Weekly or Monthly Data");
+            handleAllClick();
+          }
     }
     
     
     
 
     useEffect(()=>{
-      console.log(props.ticker);
+      
         fetchStockData();
-    },[visualization,activeUrl,options])
+    },[activeUrl,options,ticker1,ticker2])
 
     return (
         
         <div className="container" style={{borderRadius:'25px'}}>
           <div className='innerContainer'>
             <Typography className='heading' variant="h5">
-          <b><p className='stockheading'>{name}</p></b>
+          <b><p className='stockheading'>Comparison</p></b>
           <div className='timestamp'>
             <Stack direction="row" spacing={1}><Button variant={day}onClick={handleDayClick}>Day</Button>
         <Button variant={week}onClick={handleWeekClick}>Week</Button>
-        <Button variant={all} onClick={handleAllClick}>ALL</Button>
-        <Button
-        id="basic-button" variant="contained"
-        aria-controls={open ? 'basic-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-        onClick={handleClick}
-      >CHARTS<KeyboardArrowDownIcon></KeyboardArrowDownIcon></Button></Stack>
-        
-         <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'basic-button',
-        }}
-      >
-        <MenuItem value="Timeseries"onClick={handleClose}>Timeseries</MenuItem>
-          {day!=='contained'&&  <MenuItem value="Candlestick"onClick={handleClose}>Candlestick</MenuItem> }
-          {day!=='contained' && <MenuItem value="Area Chart"onClick={handleClose}>Area Chart</MenuItem> }
-          {day!=='contained' && <MenuItem value="Bar Chart"onClick={handleClose}>Bar Chart</MenuItem> }</Menu>
-          
-      
+        <Button variant={all} onClick={handleAllClick}>ALL</Button></Stack>
+     
         </div>
       </Typography></div>
-           {visualization==='Timeseries' &&<Chart key={`${visualization}-${activeUrl}-${all}-${day}-${week}`} className="visualization"  options={options} series={series} type="area" style={{width:"70%"}}
-            ></Chart>}
-            {visualization==='Area Chart' &&<AreaChart ticker={props.ticker} key={`${activeUrl}-${all}-${week}`}activeUrl={activeUrl} day={day}week ={week}all ={all}></AreaChart>}
-            {visualization==='Bar Chart' &&<BarChart ticker={props.ticker}key={`${activeUrl}-${all}-${week}`}activeUrl={activeUrl} day={day}week ={week}all ={all}></BarChart>}
-            {visualization==='Candlestick' &&<CandleStick ticker={props.ticker}key={`${visualization}-${activeUrl}-${all}--${day}-${week}`} activeUrl={activeUrl} day={day}week ={week}all ={all}></CandleStick>}
+       <Chart key={`${activeUrl}-${all}-${day}-${week}-${ticker1}-${ticker2}`} className="visualization"  options={options} series={series} type="line" style={{width:"70%"}}
+            ></Chart>
+     
         </div>
     )
 }
 
-export default StockDisplay;
+export default CompareStocks;

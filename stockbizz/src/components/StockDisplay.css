@@ -11,12 +11,12 @@
 .innerContainer{
 
     width: 70%;
-    margin-left: 30%;
+    margin-left: 17%;
  
 }
 
 .visualization{
-    margin-left: 30%;
+    margin-left: 17%;
     justify-content: bottom;
     align-items: bottom;
     background: rgba(106,53,255,0.15);
@@ -71,7 +71,7 @@
     justify-content: flex-end;
     margin-top: 30px;
     margin-right: 30px;
-    margin-left: 50%;
+    margin-left: 35%;
     margin-bottom: 15px;
   }
   

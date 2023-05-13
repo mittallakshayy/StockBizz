@@ -6,7 +6,7 @@ import Navbar from './components/Navbar.js';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from './components/Footer';
 import StockDisplayPage from './pages/StockDisplayPage';
-
+import CompareStocks from './components/CompareStocks';
 function App() {
   const [activeTicker, setActiveTicker] = useState('');
   return (
@@ -19,6 +19,9 @@ function App() {
       
       <Route path="/" element={<LandingPage />}/>
       <Route path="/visualize/:ticker" element={<StockDisplayPage />}>
+      
+      </Route>
+      <Route path="/compare/:ticker1/:ticker2" element={<CompareStocks />}>
       
       </Route>
       

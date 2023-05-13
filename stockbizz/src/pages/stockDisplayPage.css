@@ -1,0 +1,10 @@
+.stockDisplayPage{
+
+    display:flex;
+
+}
+
+.pie{
+    
+    width:500px !important;
+}

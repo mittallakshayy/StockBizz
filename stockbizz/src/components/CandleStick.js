@@ -38,9 +38,9 @@ const CandleStick = (props) => {
     });
     async function fetchStockData() {
         try {
-          const response = await axios.get(`https://www.alphavantage.co/query?function=${props.activeUrl}&symbol=GOOGL&apikey=${process.env.REACT_APP_KEY}`);
+          const response = await axios.get(`https://www.alphavantage.co/query?function=${props.activeUrl}&symbol=${props.ticker}&apikey=${process.env.REACT_APP_KEY}`);
          
-          
+         
           const responseCompanyStockData= response?.data;
          
           if(responseCompanyStockData!== undefined && responseCompanyStockData!== null){

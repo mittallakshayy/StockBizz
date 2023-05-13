@@ -13,6 +13,9 @@ import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Modal from '@mui/material/Modal'; 
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -57,12 +60,17 @@ const Search = styled('div')(({ theme }) => ({
   }));
 
 
-
-
-
- 
-
-
+  const style = {
+    position: 'relative',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 800,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
 
 
 const Navbar = () => {
@@ -71,8 +79,12 @@ const Navbar = () => {
   const [stocks, setStocks] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [ticker, setTicker]= useState('');
+  const [tickerCompare1, setTickerCompare1]= useState('');
+  const [tickerCompare2, setTickerCompare2]= useState('');
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
-  
   const handleChange = async (e)=>{
     
     if(e.target.value===''|| e.target.value.length===0){
@@ -120,10 +132,67 @@ useEffect(() => {
     return ( <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-          <img className="logo"src={Image} alt="logo"></img>
+          <img className="logo"src={Image} onClick={()=>navigate("/")}alt="logo"></img>
             
            <div className="inputgroup"
            >
+            
+            <div>
+      <Button className="compare"onClick={handleOpen}> Compare </Button>
+      <Modal
+        keepMounted
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="keep-mounted-modal-title"
+        aria-describedby="keep-mounted-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
+            Enter first and second ticker symbol
+          </Typography>
+          <Stack style={{marginTop:"20px"}} direction="row" spacing={2}><Autocomplete 
+        freeSolo
+        id="free-solo-2-demo"
+        disableClearable
+        onChange={(e,value)=>{setTickerCompare1(value.split("(")[0])}}
+        options={stocks.map((option) => `${option.symbol}(${option.name})`)}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Company Name"
+            onChange={handleChange}
+            
+            InputProps={{
+              ...params.InputProps,
+              type: 'search',
+            }}
+          />
+        )}
+      />
+             
+          <Autocomplete 
+        freeSolo
+        id="free-solo-2-demo"
+        disableClearable
+        onChange={(e,value)=>{setTickerCompare2(value.split("(")[0])}}
+        options={stocks.map((option) => `${option.symbol}(${option.name})`)}
+        renderInput={(params) => (
+          <TextField
+            {...params}
+            label="Company Name"
+            onChange={handleChange}
+            
+            InputProps={{
+              ...params.InputProps,
+              type: 'search',
+            }}
+          />
+        )}
+      />
+             <Button id="navbutton"onClick={()=>{setOpen(false);navigate(`/compare/${tickerCompare1}/${tickerCompare2}`)}}variant="contained">Compare</Button></Stack>
+        </Box>
+      </Modal>
+    </div>
             
 
 <Autocomplete 

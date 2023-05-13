@@ -40,7 +40,9 @@ const AreaChart = (props) => {
   
         async function fetchStockData() {
             try {
-              const response = await axios.get(`https://www.alphavantage.co/query?function=${props.activeUrl}&symbol=GOOGL&interval=5min&apikey=${process.env.REACT_APP_KEY}`);
+            
+              const response = await axios.get(`https://www.alphavantage.co/query?function=${props.activeUrl}&symbol=${props.ticker}&interval=5min&apikey=${process.env.REACT_APP_KEY}`);
+        
              
               const responseCompanyStockData= response.data;
              
